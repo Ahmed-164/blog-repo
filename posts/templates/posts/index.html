@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{%static 'posts/css/bootstrap.min.css'  %}" type="text/css">
+    <link rel="stylesheet" href="{%static 'posts/css/main.css' %}" type="text/css">
+
+
+
+</head>
+<body>
+
+{%if request.user.is_authenticated%}
+
+<!-- Start NavBar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand"  href="{%url 'home'%}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+      <a class="nav-link"href="{%url 'profile' user.id %}">{{user}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"href="{%url 'addpost' user.id %}">Add Post</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"href="{%url 'logout'%}">Logout</a>
+      </li>
+
+    </ul>
+
+
+  </div>
+</nav>
+
+<!-- End NavBar -->
+
+  {%else%}
+
+<!-- Start NavBar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand"  href="{%url 'home'%}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link"href="{%url 'register'%}">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"href="{%url 'login'%}">Login</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+<!-- End NavBar -->
+
+{%endif%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+{% block base %}
+<h1 align="center">All Posts</h1>
+  <div class="row mt-4">
+    {%for i in posts%}
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            Title:<h5 class="card-title">{{i.title}}</h5><br><br>
+            created by:<h5 class="card-title">{{i.user.username}}</h5><br><br>
+            <a href="{%url 'postdetail'  i.id %}" class="btn btn-primary">Show Details</a>
+          </div>
+        </div><br><br>
+    </div>
+    {%endfor%}
+
+  </div>
+</div>
+
+
+
+
+{%endblock%}
+
+
+
+<script src="{% static 'posts/js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'posts/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'posts/js/popper.min.js' %}"></script>
+
+</body>
+</html>

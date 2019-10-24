@@ -1,0 +1,14 @@
+{%extends 'posts/index.html'%}
+{%block base%}
+
+<h1>Hello ,{{user.username}}</h1>
+{%for i in u_posts%}
+<div class="card" style="width: 100%">
+  <div class="card-body">
+    <h5 class="card-title">{{i.title}}</h5><br><br>
+    <a class="btn btn-primary" href="{%url 'postdetail' i.id%}">Show Details</a>
+    <a class="btn btn-secondary" href="{%url 'postedit' i.id i.user_id%}" style="width:130px">Edit</a>
+  </div>
+</div><br>
+{%endfor%}
+{%endblock%}

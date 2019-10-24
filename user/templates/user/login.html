@@ -1,0 +1,11 @@
+{%extends 'posts/index.html'%}
+{% load crispy_forms_tags %}
+{%block base%}
+<h1 align="center">Login Here</h1>
+<div class="border p-4 mt-5">
+    <form method="post">{%csrf_token%}
+        {{lf|crispy}}
+        <input type="submit" value="Login" class="btn btn-primary">
+    </form>
+</div>
+{%endblock%}
